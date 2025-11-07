@@ -199,6 +199,10 @@
   }
 
   @media (max-width: 768px) {
+    .carousel-slide img {
+      max-height: 350px;
+    }
+    
     .carousel-btn {
       padding: 0.5rem;
     }
@@ -206,6 +210,12 @@
     .carousel-btn svg {
       width: 1.25rem;
       height: 1.25rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .carousel-slide img {
+      max-height: 280px;
     }
   }
 
