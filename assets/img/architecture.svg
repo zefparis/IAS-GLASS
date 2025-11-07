@@ -1,100 +1,219 @@
-<svg width="800" height="400" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Technical Architecture Diagram -->
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Architecture IAS Glass — IA embarquée et autonome">
+  <title>Architecture IAS Glass — Diagramme d'architecture publique montrant l'IA embarquée et autonome</title>
+  
+  <!-- Background -->
+  <rect width="1600" height="900" fill="#0B0F14"/>
+  
+  <!-- Definitions -->
   <defs>
+    <!-- Glow effects -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="strongGlow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Gradients -->
+    <radialGradient id="coreGlow" cx="50%" cy="50%">
+      <stop offset="0%" style="stop-color:#6EE7BF;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#6EE7BF;stop-opacity:0"/>
+    </radialGradient>
+    
     <linearGradient id="flowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#6EE7BF;stop-opacity:0.8" />
-      <stop offset="100%" style="stop-color:#6EE7BF;stop-opacity:0.2" />
+      <stop offset="0%" style="stop-color:#00FFFF;stop-opacity:0.6"/>
+      <stop offset="50%" style="stop-color:#6EE7BF;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#00FFFF;stop-opacity:0.6"/>
     </linearGradient>
-  </defs>
-  
-  <!-- Title -->
-  <text x="400" y="30" text-anchor="middle" font-size="20" fill="#E6EDF3" font-family="system-ui" font-weight="600">Stack d'exécution locale</text>
-  
-  <!-- Main Pipeline -->
-  
-  <!-- 1. Capteurs -->
-  <g>
-    <rect x="50" y="100" width="120" height="200" rx="8" fill="rgba(110, 231, 191, 0.1)" stroke="#6EE7BF" stroke-width="2"/>
-    <text x="110" y="130" text-anchor="middle" font-size="16" fill="#6EE7BF" font-family="system-ui" font-weight="600">Capteurs</text>
     
-    <text x="110" y="160" text-anchor="middle" font-size="12" fill="#93A2B1" font-family="system-ui">RGB</text>
-    <text x="110" y="180" text-anchor="middle" font-size="12" fill="#93A2B1" font-family="system-ui">Infrarouge</text>
-    <text x="110" y="200" text-anchor="middle" font-size="12" fill="#93A2B1" font-family="system-ui">Thermique</text>
-    <text x="110" y="220" text-anchor="middle" font-size="12" fill="#93A2B1" font-family="system-ui">Audio</text>
-    <text x="110" y="240" text-anchor="middle" font-size="12" fill="#93A2B1" font-family="system-ui">IMU</text>
-    
-    <circle cx="110" cy="270" r="4" fill="#6EE7BF"/>
-  </g>
-  
-  <!-- Arrow 1 -->
-  <path d="M 170 200 L 230 200" stroke="#6EE7BF" stroke-width="2" marker-end="url(#arrowhead)"/>
-  <defs>
-    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-      <polygon points="0 0, 10 3, 0 6" fill="#6EE7BF" />
+    <!-- Arrow marker -->
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <polygon points="0 0, 12 6, 0 12" fill="#6EE7BF" opacity="0.8"/>
     </marker>
   </defs>
   
-  <!-- 2. NPU/ARM -->
-  <g>
-    <rect x="230" y="100" width="140" height="200" rx="8" fill="rgba(110, 231, 191, 0.1)" stroke="#6EE7BF" stroke-width="2"/>
-    <text x="300" y="130" text-anchor="middle" font-size="16" fill="#6EE7BF" font-family="system-ui" font-weight="600">NPU / ARM</text>
+  <!-- Title -->
+  <text x="800" y="60" text-anchor="middle" font-size="36" fill="#E6EDF3" font-family="system-ui, -apple-system, sans-serif" font-weight="600">
+    Architecture IAS Glass — IA embarquée et autonome
+  </text>
+  
+  <!-- Central Core - Human -->
+  <g id="human-core">
+    <!-- Outer glow -->
+    <circle cx="800" cy="480" r="140" fill="url(#coreGlow)"/>
     
-    <rect x="250" y="150" width="100" height="30" rx="4" fill="rgba(110, 231, 191, 0.05)" stroke="#6EE7BF" stroke-width="1"/>
-    <text x="300" y="170" text-anchor="middle" font-size="11" fill="#93A2B1" font-family="system-ui">Neural Engine</text>
+    <!-- Core circle -->
+    <circle cx="800" cy="480" r="100" fill="rgba(110, 231, 191, 0.1)" stroke="#6EE7BF" stroke-width="3" filter="url(#strongGlow)"/>
     
-    <rect x="250" y="190" width="100" height="30" rx="4" fill="rgba(110, 231, 191, 0.05)" stroke="#6EE7BF" stroke-width="1"/>
-    <text x="300" y="210" text-anchor="middle" font-size="11" fill="#93A2B1" font-family="system-ui">Vision Pipeline</text>
+    <!-- Human silhouette icon (simplified) -->
+    <circle cx="800" cy="450" r="25" fill="none" stroke="#6EE7BF" stroke-width="2.5"/>
+    <path d="M 775 490 Q 775 475 800 475 Q 825 475 825 490 L 825 520 L 815 520 L 815 545 L 785 545 L 785 520 L 775 520 Z" 
+          fill="none" stroke="#6EE7BF" stroke-width="2.5" stroke-linejoin="round"/>
     
-    <rect x="250" y="230" width="100" height="30" rx="4" fill="rgba(110, 231, 191, 0.05)" stroke="#6EE7BF" stroke-width="1"/>
-    <text x="300" y="250" text-anchor="middle" font-size="11" fill="#93A2B1" font-family="system-ui">Audio DSP</text>
-    
-    <circle cx="300" cy="275" r="4" fill="#6EE7BF"/>
+    <!-- Central text -->
+    <text x="800" y="570" text-anchor="middle" font-size="18" fill="#E6EDF3" font-family="system-ui, sans-serif" font-weight="600">
+      Humain au centre
+    </text>
+    <text x="800" y="595" text-anchor="middle" font-size="13" fill="#6EE7BF" font-family="system-ui, sans-serif" opacity="0.9">
+      L'IA comme support perceptif
+    </text>
   </g>
   
-  <!-- Arrow 2 -->
-  <path d="M 370 200 L 430 200" stroke="#6EE7BF" stroke-width="2" marker-end="url(#arrowhead)"/>
-  
-  <!-- 3. LLM Local -->
-  <g>
-    <rect x="430" y="100" width="140" height="200" rx="8" fill="rgba(110, 231, 191, 0.15)" stroke="#6EE7BF" stroke-width="2"/>
-    <text x="500" y="130" text-anchor="middle" font-size="16" fill="#6EE7BF" font-family="system-ui" font-weight="600">LLM Local</text>
+  <!-- Block 1: Capteurs (Top Left) -->
+  <g id="sensors" transform="translate(200, 180)">
+    <rect x="0" y="0" width="280" height="180" rx="12" 
+          fill="rgba(110, 231, 191, 0.08)" stroke="#6EE7BF" stroke-width="2.5" filter="url(#glow)"/>
     
-    <text x="500" y="160" text-anchor="middle" font-size="12" fill="#93A2B1" font-family="system-ui">4-bit quant.</text>
-    <text x="500" y="180" text-anchor="middle" font-size="12" fill="#93A2B1" font-family="system-ui">Offline</text>
-    <text x="500" y="200" text-anchor="middle" font-size="12" fill="#93A2B1" font-family="system-ui">Latence &lt; 30ms</text>
+    <text x="140" y="35" text-anchor="middle" font-size="22" fill="#6EE7BF" font-family="system-ui, sans-serif" font-weight="600">
+      Capteurs intelligents
+    </text>
     
-    <rect x="450" y="220" width="100" height="50" rx="4" fill="rgba(110, 231, 191, 0.05)" stroke="#6EE7BF" stroke-width="1"/>
-    <text x="500" y="240" text-anchor="middle" font-size="10" fill="#93A2B1" font-family="system-ui">Contexte</text>
-    <text x="500" y="255" text-anchor="middle" font-size="10" fill="#93A2B1" font-family="system-ui">Analyse</text>
+    <!-- Icons/text -->
+    <g opacity="0.9">
+      <circle cx="40" cy="70" r="8" fill="#6EE7BF" opacity="0.6"/>
+      <text x="65" y="76" font-size="15" fill="#E6EDF3" font-family="system-ui, sans-serif">Caméras multi-spectre</text>
+      
+      <circle cx="40" cy="100" r="8" fill="#6EE7BF" opacity="0.6"/>
+      <text x="65" y="106" font-size="15" fill="#E6EDF3" font-family="system-ui, sans-serif">Capteurs thermiques</text>
+      
+      <circle cx="40" cy="130" r="8" fill="#6EE7BF" opacity="0.6"/>
+      <text x="65" y="136" font-size="15" fill="#E6EDF3" font-family="system-ui, sans-serif">Micros & biométrie</text>
+      
+      <circle cx="40" cy="160" r="8" fill="#6EE7BF" opacity="0.6"/>
+      <text x="65" y="166" font-size="15" fill="#E6EDF3" font-family="system-ui, sans-serif">IMU & géolocalisation</text>
+    </g>
+  </g>
+  
+  <!-- Block 2: Edge AI (Top Right) -->
+  <g id="edge-ai" transform="translate(1120, 180)">
+    <rect x="0" y="0" width="280" height="180" rx="12" 
+          fill="rgba(110, 231, 191, 0.12)" stroke="#6EE7BF" stroke-width="2.5" filter="url(#glow)"/>
     
-    <circle cx="500" cy="280" r="4" fill="#6EE7BF"/>
+    <text x="140" y="35" text-anchor="middle" font-size="22" fill="#6EE7BF" font-family="system-ui, sans-serif" font-weight="600">
+      Moteur Edge IA
+    </text>
+    
+    <!-- CPU/Brain icon simplified -->
+    <circle cx="140" cy="85" r="30" fill="none" stroke="#6EE7BF" stroke-width="2" opacity="0.7"/>
+    <path d="M 125 85 L 155 85 M 140 70 L 140 100 M 128 77 L 152 93 M 128 93 L 152 77" 
+          stroke="#6EE7BF" stroke-width="2" opacity="0.7"/>
+    
+    <text x="140" y="140" text-anchor="middle" font-size="14" fill="#E6EDF3" font-family="system-ui, sans-serif">
+      Analyse en temps réel
+    </text>
+    <text x="140" y="160" text-anchor="middle" font-size="14" fill="#E6EDF3" font-family="system-ui, sans-serif">
+      IA locale (LLM/Vision/NLP)
+    </text>
   </g>
   
-  <!-- Arrow 3 -->
-  <path d="M 570 200 L 620 200" stroke="#6EE7BF" stroke-width="2" marker-end="url(#arrowhead)"/>
-  
-  <!-- 4. Output (HUD + Audio) -->
-  <g>
-    <rect x="620" y="100" width="130" height="90" rx="8" fill="rgba(110, 231, 191, 0.1)" stroke="#6EE7BF" stroke-width="2"/>
-    <text x="685" y="130" text-anchor="middle" font-size="16" fill="#6EE7BF" font-family="system-ui" font-weight="600">HUD</text>
-    <text x="685" y="155" text-anchor="middle" font-size="12" fill="#93A2B1" font-family="system-ui">Affichage AR</text>
-    <text x="685" y="175" text-anchor="middle" font-size="12" fill="#93A2B1" font-family="system-ui">Non-intrusif</text>
+  <!-- Block 3: AR/HUD Interface (Bottom Left) -->
+  <g id="ar-hud" transform="translate(200, 540)">
+    <rect x="0" y="0" width="280" height="180" rx="12" 
+          fill="rgba(110, 231, 191, 0.08)" stroke="#6EE7BF" stroke-width="2.5" filter="url(#glow)"/>
+    
+    <text x="140" y="35" text-anchor="middle" font-size="22" fill="#6EE7BF" font-family="system-ui, sans-serif" font-weight="600">
+      Interface AR / HUD
+    </text>
+    
+    <!-- Eye/HUD icon -->
+    <ellipse cx="140" cy="90" rx="45" ry="25" fill="none" stroke="#6EE7BF" stroke-width="2" opacity="0.7"/>
+    <circle cx="140" cy="90" r="12" fill="#6EE7BF" opacity="0.6"/>
+    
+    <text x="140" y="130" text-anchor="middle" font-size="14" fill="#E6EDF3" font-family="system-ui, sans-serif">
+      Affichage holographique
+    </text>
+    <text x="140" y="150" text-anchor="middle" font-size="14" fill="#E6EDF3" font-family="system-ui, sans-serif">
+      Commandes vocales & gestuelles
+    </text>
+    <text x="140" y="170" text-anchor="middle" font-size="14" fill="#E6EDF3" font-family="system-ui, sans-serif">
+      Interactions contextuelles
+    </text>
   </g>
   
-  <g>
-    <rect x="620" y="210" width="130" height="90" rx="8" fill="rgba(110, 231, 191, 0.1)" stroke="#6EE7BF" stroke-width="2"/>
-    <text x="685" y="240" text-anchor="middle" font-size="16" fill="#6EE7BF" font-family="system-ui" font-weight="600">Audio</text>
-    <text x="685" y="265" text-anchor="middle" font-size="12" fill="#93A2B1" font-family="system-ui">Synthèse vocale</text>
-    <text x="685" y="285" text-anchor="middle" font-size="12" fill="#93A2B1" font-family="system-ui">Bone conduction</text>
+  <!-- Block 4: Cloud (Bottom Right) -->
+  <g id="cloud" transform="translate(1120, 540)">
+    <rect x="0" y="0" width="280" height="180" rx="12" 
+          fill="rgba(110, 231, 191, 0.06)" stroke="#6EE7BF" stroke-width="2.5" stroke-dasharray="8,4" filter="url(#glow)" opacity="0.8"/>
+    
+    <text x="140" y="35" text-anchor="middle" font-size="22" fill="#6EE7BF" font-family="system-ui, sans-serif" font-weight="600">
+      Cloud IAS
+    </text>
+    <text x="140" y="55" text-anchor="middle" font-size="14" fill="#E6EDF3" font-family="system-ui, sans-serif" opacity="0.7">
+      (optionnel &amp; sécurisé)
+    </text>
+    
+    <!-- Cloud icon with lock -->
+    <path d="M 110 90 Q 110 75 125 75 Q 125 65 140 65 Q 155 65 155 75 Q 170 75 170 90 Q 170 105 155 105 L 125 105 Q 110 105 110 90" 
+          fill="none" stroke="#6EE7BF" stroke-width="2" opacity="0.6"/>
+    <rect x="132" y="95" width="16" height="18" rx="2" fill="none" stroke="#6EE7BF" stroke-width="2" opacity="0.6"/>
+    <circle cx="140" cy="100" r="3" fill="#6EE7BF" opacity="0.6"/>
+    
+    <text x="140" y="135" text-anchor="middle" font-size="14" fill="#E6EDF3" font-family="system-ui, sans-serif">
+      Synchronisation chiffrée
+    </text>
+    <text x="140" y="155" text-anchor="middle" font-size="14" fill="#E6EDF3" font-family="system-ui, sans-serif">
+      Mises à jour OTA
+    </text>
+    <text x="140" y="175" text-anchor="middle" font-size="14" fill="#E6EDF3" font-family="system-ui, sans-serif">
+      Sauvegarde contextuelle
+    </text>
   </g>
   
-  <!-- Optional Cloud (peripheral) -->
-  <g opacity="0.5">
-    <rect x="300" y="330" width="200" height="50" rx="8" fill="rgba(147, 162, 177, 0.1)" stroke="#93A2B1" stroke-width="2" stroke-dasharray="5,5"/>
-    <text x="400" y="350" text-anchor="middle" font-size="14" fill="#93A2B1" font-family="system-ui" font-weight="500">Cloud (optionnel)</text>
-    <text x="400" y="368" text-anchor="middle" font-size="11" fill="#93A2B1" font-family="system-ui">Chiffré E2E</text>
+  <!-- Flow Lines with glow effect -->
+  
+  <!-- Sensors to Edge AI -->
+  <path d="M 480 270 Q 640 270 700 350" 
+        stroke="url(#flowGradient)" stroke-width="3" fill="none" marker-end="url(#arrow)" 
+        filter="url(#glow)" opacity="0.9"/>
+  
+  <!-- Edge AI to Human Core -->
+  <path d="M 1120 300 Q 960 340 900 430" 
+        stroke="url(#flowGradient)" stroke-width="3" fill="none" marker-end="url(#arrow)" 
+        filter="url(#glow)" opacity="0.9"/>
+  
+  <!-- Human Core to AR/HUD -->
+  <path d="M 720 530 Q 600 600 480 630" 
+        stroke="url(#flowGradient)" stroke-width="3" fill="none" marker-end="url(#arrow)" 
+        filter="url(#glow)" opacity="0.9"/>
+  
+  <!-- Edge AI to Cloud (bidirectional) -->
+  <path d="M 1260 360 Q 1260 480 1260 540" 
+        stroke="#6EE7BF" stroke-width="2.5" fill="none" stroke-dasharray="6,6" 
+        marker-end="url(#arrow)" filter="url(#glow)" opacity="0.5"/>
+  <path d="M 1270 540 Q 1270 480 1270 360" 
+        stroke="#6EE7BF" stroke-width="2.5" fill="none" stroke-dasharray="6,6" 
+        marker-end="url(#arrow)" filter="url(#glow)" opacity="0.5"/>
+  
+  <!-- AR/HUD feedback to Human -->
+  <path d="M 480 630 Q 640 560 700 510" 
+        stroke="url(#flowGradient)" stroke-width="2" fill="none" 
+        marker-end="url(#arrow)" filter="url(#glow)" opacity="0.6"/>
+  
+  <!-- Annotation texts (discreet) -->
+  <g id="annotations" opacity="0.75">
+    <text x="800" y="820" text-anchor="middle" font-size="16" fill="#6EE7BF" font-family="system-ui, sans-serif" font-style="italic">
+      Edge AI — autonomie complète
+    </text>
+    
+    <text x="400" y="850" text-anchor="middle" font-size="15" fill="#E6EDF3" font-family="system-ui, sans-serif" opacity="0.8">
+      Analyse locale, aucune donnée transmise sans consentement
+    </text>
+    
+    <text x="1200" y="850" text-anchor="middle" font-size="15" fill="#E6EDF3" font-family="system-ui, sans-serif" opacity="0.8">
+      Confidentialité native, pensée pour l'humain
+    </text>
   </g>
   
-  <!-- Connection to cloud (dashed) -->
-  <path d="M 500 300 L 500 315 L 400 315 L 400 330" stroke="#93A2B1" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+  <!-- Decorative circular orbit rings around center -->
+  <circle cx="800" cy="480" r="200" fill="none" stroke="#6EE7BF" stroke-width="1" opacity="0.15" stroke-dasharray="4,8"/>
+  <circle cx="800" cy="480" r="260" fill="none" stroke="#6EE7BF" stroke-width="1" opacity="0.1" stroke-dasharray="4,12"/>
 </svg>
