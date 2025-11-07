@@ -1,219 +1,252 @@
-<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Architecture IAS Glass — IA embarquée et autonome">
-  <title>Architecture IAS Glass — Diagramme d'architecture publique montrant l'IA embarquée et autonome</title>
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>Architecture technique détaillée IAS Glass</title>
   
   <!-- Background -->
-  <rect width="1600" height="900" fill="#0B0F14"/>
+  <rect width="1600" height="1000" fill="#0B0F14"/>
   
-  <!-- Definitions -->
+  <!-- Defs -->
   <defs>
-    <!-- Glow effects -->
     <filter id="glow">
-      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-      <feMerge>
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
-    
-    <filter id="strongGlow">
-      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
-      <feMerge>
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-    
-    <!-- Gradients -->
-    <radialGradient id="coreGlow" cx="50%" cy="50%">
-      <stop offset="0%" style="stop-color:#6EE7BF;stop-opacity:0.3"/>
-      <stop offset="100%" style="stop-color:#6EE7BF;stop-opacity:0"/>
-    </radialGradient>
-    
-    <linearGradient id="flowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#00FFFF;stop-opacity:0.6"/>
-      <stop offset="50%" style="stop-color:#6EE7BF;stop-opacity:0.8"/>
-      <stop offset="100%" style="stop-color:#00FFFF;stop-opacity:0.6"/>
+    <linearGradient id="flow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00FFFF" stop-opacity="0.6"/>
+      <stop offset="50%" stop-color="#6EE7BF" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#00FFFF" stop-opacity="0.6"/>
     </linearGradient>
-    
-    <!-- Arrow marker -->
-    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
-      <polygon points="0 0, 12 6, 0 12" fill="#6EE7BF" opacity="0.8"/>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <polygon points="0 0, 10 5, 0 10" fill="#6EE7BF"/>
     </marker>
   </defs>
   
   <!-- Title -->
-  <text x="800" y="60" text-anchor="middle" font-size="36" fill="#E6EDF3" font-family="system-ui, -apple-system, sans-serif" font-weight="600">
-    Architecture IAS Glass — IA embarquée et autonome
+  <text x="800" y="40" text-anchor="middle" font-size="32" fill="#E6EDF3" font-family="system-ui" font-weight="600">
+    Architecture IAS Glass — Stack complet embarqué
   </text>
   
-  <!-- Central Core - Human -->
-  <g id="human-core">
-    <!-- Outer glow -->
-    <circle cx="800" cy="480" r="140" fill="url(#coreGlow)"/>
+  <!-- LAYER 1: CAPTEURS -->
+  <g id="sensors">
+    <rect x="30" y="100" width="280" height="780" rx="10" fill="rgba(110,231,191,0.05)" stroke="#6EE7BF" stroke-width="2"/>
+    <text x="170" y="130" text-anchor="middle" font-size="20" fill="#6EE7BF" font-family="system-ui" font-weight="600">CAPTEURS</text>
     
-    <!-- Core circle -->
-    <circle cx="800" cy="480" r="100" fill="rgba(110, 231, 191, 0.1)" stroke="#6EE7BF" stroke-width="3" filter="url(#strongGlow)"/>
+    <!-- Vision -->
+    <rect x="50" y="160" width="240" height="140" rx="6" fill="rgba(110,231,191,0.08)" stroke="#6EE7BF" stroke-width="1.5"/>
+    <text x="170" y="185" text-anchor="middle" font-size="16" fill="#E6EDF3" font-family="system-ui" font-weight="600">Vision Multi-Spectre</text>
+    <text x="60" y="210" font-size="13" fill="#E6EDF3" font-family="system-ui">• Caméra RGB 4K (120fps)</text>
+    <text x="60" y="230" font-size="13" fill="#E6EDF3" font-family="system-ui">• Infrarouge proche (NIR)</text>
+    <text x="60" y="250" font-size="13" fill="#E6EDF3" font-family="system-ui">• Capteur profondeur (ToF)</text>
+    <text x="60" y="270" font-size="13" fill="#E6EDF3" font-family="system-ui">• Eye tracking 200Hz</text>
+    <text x="60" y="290" font-size="13" fill="#E6EDF3" font-family="system-ui">• HDR 10-bit, stabilisation</text>
     
-    <!-- Human silhouette icon (simplified) -->
-    <circle cx="800" cy="450" r="25" fill="none" stroke="#6EE7BF" stroke-width="2.5"/>
-    <path d="M 775 490 Q 775 475 800 475 Q 825 475 825 490 L 825 520 L 815 520 L 815 545 L 785 545 L 785 520 L 775 520 Z" 
-          fill="none" stroke="#6EE7BF" stroke-width="2.5" stroke-linejoin="round"/>
+    <!-- Thermal -->
+    <rect x="50" y="320" width="240" height="100" rx="6" fill="rgba(110,231,191,0.08)" stroke="#6EE7BF" stroke-width="1.5"/>
+    <text x="170" y="345" text-anchor="middle" font-size="16" fill="#E6EDF3" font-family="system-ui" font-weight="600">Thermique</text>
+    <text x="60" y="370" font-size="13" fill="#E6EDF3" font-family="system-ui">• LWIR 8-14μm</text>
+    <text x="60" y="390" font-size="13" fill="#E6EDF3" font-family="system-ui">• Résolution 160×120</text>
+    <text x="60" y="410" font-size="13" fill="#E6EDF3" font-family="system-ui">• Précision ±2°C</text>
     
-    <!-- Central text -->
-    <text x="800" y="570" text-anchor="middle" font-size="18" fill="#E6EDF3" font-family="system-ui, sans-serif" font-weight="600">
-      Humain au centre
-    </text>
-    <text x="800" y="595" text-anchor="middle" font-size="13" fill="#6EE7BF" font-family="system-ui, sans-serif" opacity="0.9">
-      L'IA comme support perceptif
-    </text>
+    <!-- Audio -->
+    <rect x="50" y="440" width="240" height="120" rx="6" fill="rgba(110,231,191,0.08)" stroke="#6EE7BF" stroke-width="1.5"/>
+    <text x="170" y="465" text-anchor="middle" font-size="16" fill="#E6EDF3" font-family="system-ui" font-weight="600">Audio Spatial</text>
+    <text x="60" y="490" font-size="13" fill="#E6EDF3" font-family="system-ui">• 4x MEMS microphones</text>
+    <text x="60" y="510" font-size="13" fill="#E6EDF3" font-family="system-ui">• Beamforming adaptatif</text>
+    <text x="60" y="530" font-size="13" fill="#E6EDF3" font-family="system-ui">• Réduction bruit (DSP)</text>
+    <text x="60" y="550" font-size="13" fill="#E6EDF3" font-family="system-ui">• Détection direction source</text>
+    
+    <!-- IMU + Bio -->
+    <rect x="50" y="580" width="240" height="140" rx="6" fill="rgba(110,231,191,0.08)" stroke="#6EE7BF" stroke-width="1.5"/>
+    <text x="170" y="605" text-anchor="middle" font-size="16" fill="#E6EDF3" font-family="system-ui" font-weight="600">IMU &amp; Biométrie</text>
+    <text x="60" y="630" font-size="13" fill="#E6EDF3" font-family="system-ui">• IMU 9-axes (1000Hz)</text>
+    <text x="60" y="650" font-size="13" fill="#E6EDF3" font-family="system-ui">• Magnétomètre calibré</text>
+    <text x="60" y="670" font-size="13" fill="#E6EDF3" font-family="system-ui">• PPG (rythme cardiaque)</text>
+    <text x="60" y="690" font-size="13" fill="#E6EDF3" font-family="system-ui">• Capteurs température</text>
+    <text x="60" y="710" font-size="13" fill="#E6EDF3" font-family="system-ui">• GPS/GNSS optionnel</text>
+    
+    <circle cx="290" cy="440" r="6" fill="#6EE7BF" filter="url(#glow)"/>
   </g>
   
-  <!-- Block 1: Capteurs (Top Left) -->
-  <g id="sensors" transform="translate(200, 180)">
-    <rect x="0" y="0" width="280" height="180" rx="12" 
-          fill="rgba(110, 231, 191, 0.08)" stroke="#6EE7BF" stroke-width="2.5" filter="url(#glow)"/>
+  <!-- LAYER 2: SOC + NPU -->
+  <g id="processing">
+    <rect x="350" y="100" width="280" height="780" rx="10" fill="rgba(110,231,191,0.07)" stroke="#6EE7BF" stroke-width="2"/>
+    <text x="490" y="130" text-anchor="middle" font-size="20" fill="#6EE7BF" font-family="system-ui" font-weight="600">SOC + ACCÉLÉRATEURS</text>
     
-    <text x="140" y="35" text-anchor="middle" font-size="22" fill="#6EE7BF" font-family="system-ui, sans-serif" font-weight="600">
-      Capteurs intelligents
-    </text>
+    <!-- NPU -->
+    <rect x="370" y="160" width="240" height="160" rx="6" fill="rgba(110,231,191,0.10)" stroke="#6EE7BF" stroke-width="1.5"/>
+    <text x="490" y="185" text-anchor="middle" font-size="16" fill="#E6EDF3" font-family="system-ui" font-weight="600">NPU (Neural Engine)</text>
+    <text x="380" y="210" font-size="13" fill="#E6EDF3" font-family="system-ui">• 6-12 TOPS INT8</text>
+    <text x="380" y="230" font-size="13" fill="#E6EDF3" font-family="system-ui">• Pipeline vision dédié</text>
+    <text x="380" y="250" font-size="13" fill="#E6EDF3" font-family="system-ui">• Object detection (YOLO)</text>
+    <text x="380" y="270" font-size="13" fill="#E6EDF3" font-family="system-ui">• Segmentation sémantique</text>
+    <text x="380" y="290" font-size="13" fill="#E6EDF3" font-family="system-ui">• Pose estimation</text>
+    <text x="380" y="310" font-size="13" fill="#E6EDF3" font-family="system-ui">• Latence &lt; 15ms</text>
     
-    <!-- Icons/text -->
-    <g opacity="0.9">
-      <circle cx="40" cy="70" r="8" fill="#6EE7BF" opacity="0.6"/>
-      <text x="65" y="76" font-size="15" fill="#E6EDF3" font-family="system-ui, sans-serif">Caméras multi-spectre</text>
-      
-      <circle cx="40" cy="100" r="8" fill="#6EE7BF" opacity="0.6"/>
-      <text x="65" y="106" font-size="15" fill="#E6EDF3" font-family="system-ui, sans-serif">Capteurs thermiques</text>
-      
-      <circle cx="40" cy="130" r="8" fill="#6EE7BF" opacity="0.6"/>
-      <text x="65" y="136" font-size="15" fill="#E6EDF3" font-family="system-ui, sans-serif">Micros & biométrie</text>
-      
-      <circle cx="40" cy="160" r="8" fill="#6EE7BF" opacity="0.6"/>
-      <text x="65" y="166" font-size="15" fill="#E6EDF3" font-family="system-ui, sans-serif">IMU & géolocalisation</text>
-    </g>
+    <!-- ISP + GPU -->
+    <rect x="370" y="340" width="240" height="120" rx="6" fill="rgba(110,231,191,0.10)" stroke="#6EE7BF" stroke-width="1.5"/>
+    <text x="490" y="365" text-anchor="middle" font-size="16" fill="#E6EDF3" font-family="system-ui" font-weight="600">ISP + GPU</text>
+    <text x="380" y="390" font-size="13" fill="#E6EDF3" font-family="system-ui">• ISP 14-bit pipeline</text>
+    <text x="380" y="410" font-size="13" fill="#E6EDF3" font-family="system-ui">• GPU Mali/Adreno (XR)</text>
+    <text x="380" y="430" font-size="13" fill="#E6EDF3" font-family="system-ui">• Rendu AR temps réel</text>
+    <text x="380" y="450" font-size="13" fill="#E6EDF3" font-family="system-ui">• OpenGL ES 3.2 / Vulkan</text>
+    
+    <!-- CPU ARM -->
+    <rect x="370" y="480" width="240" height="100" rx="6" fill="rgba(110,231,191,0.10)" stroke="#6EE7BF" stroke-width="1.5"/>
+    <text x="490" y="505" text-anchor="middle" font-size="16" fill="#E6EDF3" font-family="system-ui" font-weight="600">CPU ARM</text>
+    <text x="380" y="530" font-size="13" fill="#E6EDF3" font-family="system-ui">• 8 cœurs (4+4)</text>
+    <text x="380" y="550" font-size="13" fill="#E6EDF3" font-family="system-ui">• Cortex-A78 / A55</text>
+    <text x="380" y="570" font-size="13" fill="#E6EDF3" font-family="system-ui">• Cache L3 4MB</text>
+    
+    <!-- DSP Audio -->
+    <rect x="370" y="600" width="240" height="100" rx="6" fill="rgba(110,231,191,0.10)" stroke="#6EE7BF" stroke-width="1.5"/>
+    <text x="490" y="625" text-anchor="middle" font-size="16" fill="#E6EDF3" font-family="system-ui" font-weight="600">DSP Audio</text>
+    <text x="380" y="650" font-size="13" fill="#E6EDF3" font-family="system-ui">• Hexagon / Tensilica</text>
+    <text x="380" y="670" font-size="13" fill="#E6EDF3" font-family="system-ui">• Wake word detection</text>
+    <text x="380" y="690" font-size="13" fill="#E6EDF3" font-family="system-ui">• Noise cancellation</text>
+    
+    <!-- Memory -->
+    <rect x="370" y="720" width="240" height="80" rx="6" fill="rgba(110,231,191,0.10)" stroke="#6EE7BF" stroke-width="1.5"/>
+    <text x="490" y="745" text-anchor="middle" font-size="16" fill="#E6EDF3" font-family="system-ui" font-weight="600">Mémoire</text>
+    <text x="380" y="770" font-size="13" fill="#E6EDF3" font-family="system-ui">• LPDDR5 6-8GB</text>
+    <text x="380" y="790" font-size="13" fill="#E6EDF3" font-family="system-ui">• eMMC/UFS 128-256GB</text>
+    
+    <circle cx="350" cy="440" r="6" fill="#6EE7BF" filter="url(#glow)"/>
+    <circle cx="630" cy="440" r="6" fill="#6EE7BF" filter="url(#glow)"/>
   </g>
   
-  <!-- Block 2: Edge AI (Top Right) -->
-  <g id="edge-ai" transform="translate(1120, 180)">
-    <rect x="0" y="0" width="280" height="180" rx="12" 
-          fill="rgba(110, 231, 191, 0.12)" stroke="#6EE7BF" stroke-width="2.5" filter="url(#glow)"/>
+  <!-- LAYER 3: IA LOCALE -->
+  <g id="ai">
+    <rect x="670" y="100" width="280" height="780" rx="10" fill="rgba(110,231,191,0.09)" stroke="#6EE7BF" stroke-width="2"/>
+    <text x="810" y="130" text-anchor="middle" font-size="20" fill="#6EE7BF" font-family="system-ui" font-weight="600">IA EMBARQUÉE</text>
     
-    <text x="140" y="35" text-anchor="middle" font-size="22" fill="#6EE7BF" font-family="system-ui, sans-serif" font-weight="600">
-      Moteur Edge IA
-    </text>
+    <!-- LLM -->
+    <rect x="690" y="160" width="240" height="160" rx="6" fill="rgba(110,231,191,0.12)" stroke="#6EE7BF" stroke-width="1.5"/>
+    <text x="810" y="185" text-anchor="middle" font-size="16" fill="#E6EDF3" font-family="system-ui" font-weight="600">LLM Local</text>
+    <text x="700" y="210" font-size="13" fill="#E6EDF3" font-family="system-ui">• Modèle 3-7B paramètres</text>
+    <text x="700" y="230" font-size="13" fill="#E6EDF3" font-family="system-ui">• Quantification 4-bit (GPTQ)</text>
+    <text x="700" y="250" font-size="13" fill="#E6EDF3" font-family="system-ui">• Context window 4K tokens</text>
+    <text x="700" y="270" font-size="13" fill="#E6EDF3" font-family="system-ui">• Inférence &lt; 50ms/token</text>
+    <text x="700" y="290" font-size="13" fill="#E6EDF3" font-family="system-ui">• Mode offline complet</text>
+    <text x="700" y="310" font-size="13" fill="#E6EDF3" font-family="system-ui">• Raisonnement contextuel</text>
     
-    <!-- CPU/Brain icon simplified -->
-    <circle cx="140" cy="85" r="30" fill="none" stroke="#6EE7BF" stroke-width="2" opacity="0.7"/>
-    <path d="M 125 85 L 155 85 M 140 70 L 140 100 M 128 77 L 152 93 M 128 93 L 152 77" 
-          stroke="#6EE7BF" stroke-width="2" opacity="0.7"/>
+    <!-- Vision AI -->
+    <rect x="690" y="340" width="240" height="140" rx="6" fill="rgba(110,231,191,0.12)" stroke="#6EE7BF" stroke-width="1.5"/>
+    <text x="810" y="365" text-anchor="middle" font-size="16" fill="#E6EDF3" font-family="system-ui" font-weight="600">Vision AI</text>
+    <text x="700" y="390" font-size="13" fill="#E6EDF3" font-family="system-ui">• CLIP multimodal</text>
+    <text x="700" y="410" font-size="13" fill="#E6EDF3" font-family="system-ui">• OCR temps réel</text>
+    <text x="700" y="430" font-size="13" fill="#E6EDF3" font-family="system-ui">• Scene understanding</text>
+    <text x="700" y="450" font-size="13" fill="#E6EDF3" font-family="system-ui">• Reconnaissance objets</text>
+    <text x="700" y="470" font-size="13" fill="#E6EDF3" font-family="system-ui">• Tracking multi-objets</text>
     
-    <text x="140" y="140" text-anchor="middle" font-size="14" fill="#E6EDF3" font-family="system-ui, sans-serif">
-      Analyse en temps réel
-    </text>
-    <text x="140" y="160" text-anchor="middle" font-size="14" fill="#E6EDF3" font-family="system-ui, sans-serif">
-      IA locale (LLM/Vision/NLP)
-    </text>
+    <!-- NLP -->
+    <rect x="690" y="500" width="240" height="120" rx="6" fill="rgba(110,231,191,0.12)" stroke="#6EE7BF" stroke-width="1.5"/>
+    <text x="810" y="525" text-anchor="middle" font-size="16" fill="#E6EDF3" font-family="system-ui" font-weight="600">NLP &amp; Audio AI</text>
+    <text x="700" y="550" font-size="13" fill="#E6EDF3" font-family="system-ui">• ASR (Whisper-like)</text>
+    <text x="700" y="570" font-size="13" fill="#E6EDF3" font-family="system-ui">• TTS neural synthesis</text>
+    <text x="700" y="590" font-size="13" fill="#E6EDF3" font-family="system-ui">• Intent recognition</text>
+    <text x="700" y="610" font-size="13" fill="#E6EDF3" font-family="system-ui">• Multilangue (10+ langues)</text>
+    
+    <!-- Context Engine -->
+    <rect x="690" y="640" width="240" height="140" rx="6" fill="rgba(110,231,191,0.12)" stroke="#6EE7BF" stroke-width="1.5"/>
+    <text x="810" y="665" text-anchor="middle" font-size="16" fill="#E6EDF3" font-family="system-ui" font-weight="600">Moteur Contextuel</text>
+    <text x="700" y="690" font-size="13" fill="#E6EDF3" font-family="system-ui">• Fusion multi-capteurs</text>
+    <text x="700" y="710" font-size="13" fill="#E6EDF3" font-family="system-ui">• Graph contexte temporel</text>
+    <text x="700" y="730" font-size="13" fill="#E6EDF3" font-family="system-ui">• Prédiction intentions</text>
+    <text x="700" y="750" font-size="13" fill="#E6EDF3" font-family="system-ui">• Mémoire épisodique</text>
+    <text x="700" y="770" font-size="13" fill="#E6EDF3" font-family="system-ui">• Privacy-first design</text>
+    
+    <circle cx="670" cy="440" r="6" fill="#6EE7BF" filter="url(#glow)"/>
+    <circle cx="950" cy="440" r="6" fill="#6EE7BF" filter="url(#glow)"/>
   </g>
   
-  <!-- Block 3: AR/HUD Interface (Bottom Left) -->
-  <g id="ar-hud" transform="translate(200, 540)">
-    <rect x="0" y="0" width="280" height="180" rx="12" 
-          fill="rgba(110, 231, 191, 0.08)" stroke="#6EE7BF" stroke-width="2.5" filter="url(#glow)"/>
+  <!-- LAYER 4: OUTPUT -->
+  <g id="output">
+    <rect x="990" y="100" width="280" height="780" rx="10" fill="rgba(110,231,191,0.06)" stroke="#6EE7BF" stroke-width="2"/>
+    <text x="1130" y="130" text-anchor="middle" font-size="20" fill="#6EE7BF" font-family="system-ui" font-weight="600">INTERFACE UTILISATEUR</text>
     
-    <text x="140" y="35" text-anchor="middle" font-size="22" fill="#6EE7BF" font-family="system-ui, sans-serif" font-weight="600">
-      Interface AR / HUD
-    </text>
+    <!-- Display -->
+    <rect x="1010" y="160" width="240" height="160" rx="6" fill="rgba(110,231,191,0.09)" stroke="#6EE7BF" stroke-width="1.5"/>
+    <text x="1130" y="185" text-anchor="middle" font-size="16" fill="#E6EDF3" font-family="system-ui" font-weight="600">Affichage AR/MR</text>
+    <text x="1020" y="210" font-size="13" fill="#E6EDF3" font-family="system-ui">• MicroLED binoculaire</text>
+    <text x="1020" y="230" font-size="13" fill="#E6EDF3" font-family="system-ui">• FoV 50° diagonal</text>
+    <text x="1020" y="250" font-size="13" fill="#E6EDF3" font-family="system-ui">• Résolution 1920×1080/œil</text>
+    <text x="1020" y="270" font-size="13" fill="#E6EDF3" font-family="system-ui">• Brightness 3000 nits</text>
+    <text x="1020" y="290" font-size="13" fill="#E6EDF3" font-family="system-ui">• Waveguide optique</text>
+    <text x="1020" y="310" font-size="13" fill="#E6EDF3" font-family="system-ui">• Latency &lt; 10ms</text>
     
-    <!-- Eye/HUD icon -->
-    <ellipse cx="140" cy="90" rx="45" ry="25" fill="none" stroke="#6EE7BF" stroke-width="2" opacity="0.7"/>
-    <circle cx="140" cy="90" r="12" fill="#6EE7BF" opacity="0.6"/>
+    <!-- Audio Out -->
+    <rect x="1010" y="340" width="240" height="120" rx="6" fill="rgba(110,231,191,0.09)" stroke="#6EE7BF" stroke-width="1.5"/>
+    <text x="1130" y="365" text-anchor="middle" font-size="16" fill="#E6EDF3" font-family="system-ui" font-weight="600">Audio Spatial 3D</text>
+    <text x="1020" y="390" font-size="13" fill="#E6EDF3" font-family="system-ui">• Bone conduction</text>
+    <text x="1020" y="410" font-size="13" fill="#E6EDF3" font-family="system-ui">• Directional audio</text>
+    <text x="1020" y="430" font-size="13" fill="#E6EDF3" font-family="system-ui">• Spatial positioning</text>
+    <text x="1020" y="450" font-size="13" fill="#E6EDF3" font-family="system-ui">• ANC adaptative</text>
     
-    <text x="140" y="130" text-anchor="middle" font-size="14" fill="#E6EDF3" font-family="system-ui, sans-serif">
-      Affichage holographique
-    </text>
-    <text x="140" y="150" text-anchor="middle" font-size="14" fill="#E6EDF3" font-family="system-ui, sans-serif">
-      Commandes vocales & gestuelles
-    </text>
-    <text x="140" y="170" text-anchor="middle" font-size="14" fill="#E6EDF3" font-family="system-ui, sans-serif">
-      Interactions contextuelles
-    </text>
+    <!-- Interaction -->
+    <rect x="1010" y="480" width="240" height="160" rx="6" fill="rgba(110,231,191,0.09)" stroke="#6EE7BF" stroke-width="1.5"/>
+    <text x="1130" y="505" text-anchor="middle" font-size="16" fill="#E6EDF3" font-family="system-ui" font-weight="600">Interactions</text>
+    <text x="1020" y="530" font-size="13" fill="#E6EDF3" font-family="system-ui">• Commandes vocales</text>
+    <text x="1020" y="550" font-size="13" fill="#E6EDF3" font-family="system-ui">• Gestes mains (hand track.)</text>
+    <text x="1020" y="570" font-size="13" fill="#E6EDF3" font-family="system-ui">• Eye tracking cursor</text>
+    <text x="1020" y="590" font-size="13" fill="#E6EDF3" font-family="system-ui">• Boutons tactiles</text>
+    <text x="1020" y="610" font-size="13" fill="#E6EDF3" font-family="system-ui">• Touchpad directionnel</text>
+    <text x="1020" y="630" font-size="13" fill="#E6EDF3" font-family="system-ui">• Feedback haptique</text>
+    
+    <!-- Power -->
+    <rect x="1010" y="660" width="240" height="100" rx="6" fill="rgba(110,231,191,0.09)" stroke="#6EE7BF" stroke-width="1.5"/>
+    <text x="1130" y="685" text-anchor="middle" font-size="16" fill="#E6EDF3" font-family="system-ui" font-weight="600">Alimentation</text>
+    <text x="1020" y="710" font-size="13" fill="#E6EDF3" font-family="system-ui">• Batterie 3000mAh</text>
+    <text x="1020" y="730" font-size="13" fill="#E6EDF3" font-family="system-ui">• Autonomie 8-12h usage</text>
+    <text x="1020" y="750" font-size="13" fill="#E6EDF3" font-family="system-ui">• Charge rapide USB-C PD</text>
+    
+    <circle cx="990" cy="440" r="6" fill="#6EE7BF" filter="url(#glow)"/>
   </g>
   
-  <!-- Block 4: Cloud (Bottom Right) -->
-  <g id="cloud" transform="translate(1120, 540)">
-    <rect x="0" y="0" width="280" height="180" rx="12" 
-          fill="rgba(110, 231, 191, 0.06)" stroke="#6EE7BF" stroke-width="2.5" stroke-dasharray="8,4" filter="url(#glow)" opacity="0.8"/>
+  <!-- LAYER 5: CLOUD -->
+  <g id="cloud">
+    <rect x="1310" y="100" width="260" height="780" rx="10" fill="rgba(110,231,191,0.04)" stroke="#6EE7BF" stroke-width="2" stroke-dasharray="8,4" opacity="0.85"/>
+    <text x="1440" y="130" text-anchor="middle" font-size="20" fill="#6EE7BF" font-family="system-ui" font-weight="600">CLOUD</text>
+    <text x="1440" y="155" text-anchor="middle" font-size="14" fill="#E6EDF3" font-family="system-ui" opacity="0.7">(optionnel)</text>
     
-    <text x="140" y="35" text-anchor="middle" font-size="22" fill="#6EE7BF" font-family="system-ui, sans-serif" font-weight="600">
-      Cloud IAS
-    </text>
-    <text x="140" y="55" text-anchor="middle" font-size="14" fill="#E6EDF3" font-family="system-ui, sans-serif" opacity="0.7">
-      (optionnel &amp; sécurisé)
-    </text>
+    <rect x="1330" y="200" width="220" height="100" rx="6" fill="rgba(110,231,191,0.06)" stroke="#6EE7BF" stroke-width="1.5"/>
+    <text x="1440" y="225" text-anchor="middle" font-size="15" fill="#E6EDF3" font-family="system-ui" font-weight="600">Synchronisation</text>
+    <text x="1340" y="250" font-size="12" fill="#E6EDF3" font-family="system-ui">• Chiffrement E2E (AES-256)</text>
+    <text x="1340" y="270" font-size="12" fill="#E6EDF3" font-family="system-ui">• Backup contexte chiffré</text>
+    <text x="1340" y="290" font-size="12" fill="#E6EDF3" font-family="system-ui">• Multi-device sync</text>
     
-    <!-- Cloud icon with lock -->
-    <path d="M 110 90 Q 110 75 125 75 Q 125 65 140 65 Q 155 65 155 75 Q 170 75 170 90 Q 170 105 155 105 L 125 105 Q 110 105 110 90" 
-          fill="none" stroke="#6EE7BF" stroke-width="2" opacity="0.6"/>
-    <rect x="132" y="95" width="16" height="18" rx="2" fill="none" stroke="#6EE7BF" stroke-width="2" opacity="0.6"/>
-    <circle cx="140" cy="100" r="3" fill="#6EE7BF" opacity="0.6"/>
+    <rect x="1330" y="320" width="220" height="100" rx="6" fill="rgba(110,231,191,0.06)" stroke="#6EE7BF" stroke-width="1.5"/>
+    <text x="1440" y="345" text-anchor="middle" font-size="15" fill="#E6EDF3" font-family="system-ui" font-weight="600">Mises à jour OTA</text>
+    <text x="1340" y="370" font-size="12" fill="#E6EDF3" font-family="system-ui">• Firmware signé</text>
+    <text x="1340" y="390" font-size="12" fill="#E6EDF3" font-family="system-ui">• Rollback sécurisé</text>
+    <text x="1340" y="410" font-size="12" fill="#E6EDF3" font-family="system-ui">• Delta updates</text>
     
-    <text x="140" y="135" text-anchor="middle" font-size="14" fill="#E6EDF3" font-family="system-ui, sans-serif">
-      Synchronisation chiffrée
-    </text>
-    <text x="140" y="155" text-anchor="middle" font-size="14" fill="#E6EDF3" font-family="system-ui, sans-serif">
-      Mises à jour OTA
-    </text>
-    <text x="140" y="175" text-anchor="middle" font-size="14" fill="#E6EDF3" font-family="system-ui, sans-serif">
-      Sauvegarde contextuelle
-    </text>
+    <rect x="1330" y="440" width="220" height="120" rx="6" fill="rgba(110,231,191,0.06)" stroke="#6EE7BF" stroke-width="1.5"/>
+    <text x="1440" y="465" text-anchor="middle" font-size="15" fill="#E6EDF3" font-family="system-ui" font-weight="600">Services avancés</text>
+    <text x="1340" y="490" font-size="12" fill="#E6EDF3" font-family="system-ui">• LLM cloud (opt-in)</text>
+    <text x="1340" y="510" font-size="12" fill="#E6EDF3" font-family="system-ui">• Analyse différée</text>
+    <text x="1340" y="530" font-size="12" fill="#E6EDF3" font-family="system-ui">• Partage sélectif</text>
+    <text x="1340" y="550" font-size="12" fill="#E6EDF3" font-family="system-ui">• Consentement explicite</text>
+    
+    <rect x="1330" y="590" width="220" height="80" rx="6" fill="rgba(110,231,191,0.08)" stroke="#6EE7BF" stroke-width="1.5"/>
+    <text x="1440" y="620" text-anchor="middle" font-size="14" fill="#6EE7BF" font-family="system-ui" font-weight="600">⚠ Confidentialité</text>
+    <text x="1440" y="645" text-anchor="middle" font-size="12" fill="#E6EDF3" font-family="system-ui">Aucune transmission</text>
+    <text x="1440" y="662" text-anchor="middle" font-size="12" fill="#E6EDF3" font-family="system-ui">sans consentement</text>
   </g>
   
-  <!-- Flow Lines with glow effect -->
+  <!-- Flow arrows main pipeline -->
+  <path d="M 310 440 L 345 440" stroke="url(#flow)" stroke-width="3" marker-end="url(#arrow)" filter="url(#glow)"/>
+  <path d="M 630 440 L 665 440" stroke="url(#flow)" stroke-width="3" marker-end="url(#arrow)" filter="url(#glow)"/>
+  <path d="M 950 440 L 985 440" stroke="url(#flow)" stroke-width="3" marker-end="url(#arrow)" filter="url(#glow)"/>
   
-  <!-- Sensors to Edge AI -->
-  <path d="M 480 270 Q 640 270 700 350" 
-        stroke="url(#flowGradient)" stroke-width="3" fill="none" marker-end="url(#arrow)" 
-        filter="url(#glow)" opacity="0.9"/>
+  <!-- Cloud bidirectional (dashed) -->
+  <path d="M 1270 420 L 1305 420" stroke="#6EE7BF" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arrow)" opacity="0.6"/>
+  <path d="M 1310 460 L 1275 460" stroke="#6EE7BF" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arrow)" opacity="0.6"/>
   
-  <!-- Edge AI to Human Core -->
-  <path d="M 1120 300 Q 960 340 900 430" 
-        stroke="url(#flowGradient)" stroke-width="3" fill="none" marker-end="url(#arrow)" 
-        filter="url(#glow)" opacity="0.9"/>
+  <!-- Bottom annotations -->
+  <text x="800" y="940" text-anchor="middle" font-size="16" fill="#6EE7BF" font-family="system-ui" font-style="italic" font-weight="500">
+    Edge AI — Autonomie complète • Analyse locale • Confidentialité native
+  </text>
+  <text x="800" y="970" text-anchor="middle" font-size="14" fill="#E6EDF3" font-family="system-ui" opacity="0.8">
+    Latence totale capteur → affichage : &lt; 35ms • Aucun serveur externe requis
+  </text>
   
-  <!-- Human Core to AR/HUD -->
-  <path d="M 720 530 Q 600 600 480 630" 
-        stroke="url(#flowGradient)" stroke-width="3" fill="none" marker-end="url(#arrow)" 
-        filter="url(#glow)" opacity="0.9"/>
-  
-  <!-- Edge AI to Cloud (bidirectional) -->
-  <path d="M 1260 360 Q 1260 480 1260 540" 
-        stroke="#6EE7BF" stroke-width="2.5" fill="none" stroke-dasharray="6,6" 
-        marker-end="url(#arrow)" filter="url(#glow)" opacity="0.5"/>
-  <path d="M 1270 540 Q 1270 480 1270 360" 
-        stroke="#6EE7BF" stroke-width="2.5" fill="none" stroke-dasharray="6,6" 
-        marker-end="url(#arrow)" filter="url(#glow)" opacity="0.5"/>
-  
-  <!-- AR/HUD feedback to Human -->
-  <path d="M 480 630 Q 640 560 700 510" 
-        stroke="url(#flowGradient)" stroke-width="2" fill="none" 
-        marker-end="url(#arrow)" filter="url(#glow)" opacity="0.6"/>
-  
-  <!-- Annotation texts (discreet) -->
-  <g id="annotations" opacity="0.75">
-    <text x="800" y="820" text-anchor="middle" font-size="16" fill="#6EE7BF" font-family="system-ui, sans-serif" font-style="italic">
-      Edge AI — autonomie complète
-    </text>
-    
-    <text x="400" y="850" text-anchor="middle" font-size="15" fill="#E6EDF3" font-family="system-ui, sans-serif" opacity="0.8">
-      Analyse locale, aucune donnée transmise sans consentement
-    </text>
-    
-    <text x="1200" y="850" text-anchor="middle" font-size="15" fill="#E6EDF3" font-family="system-ui, sans-serif" opacity="0.8">
-      Confidentialité native, pensée pour l'humain
-    </text>
-  </g>
-  
-  <!-- Decorative circular orbit rings around center -->
-  <circle cx="800" cy="480" r="200" fill="none" stroke="#6EE7BF" stroke-width="1" opacity="0.15" stroke-dasharray="4,8"/>
-  <circle cx="800" cy="480" r="260" fill="none" stroke="#6EE7BF" stroke-width="1" opacity="0.1" stroke-dasharray="4,12"/>
 </svg>
