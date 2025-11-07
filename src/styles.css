@@ -162,6 +162,8 @@
   .carousel-wrapper {
     position: relative;
     width: 100%;
+    overflow: hidden;
+    min-height: 400px;
   }
 
   .carousel-track {
@@ -202,12 +204,16 @@
   }
 
   @media (max-width: 768px) {
+    .carousel-wrapper {
+      min-height: 350px;
+    }
+    
     .carousel-slide {
       padding: 0.5rem;
     }
     
     .carousel-slide img {
-      max-height: 400px;
+      max-height: 350px;
     }
     
     .carousel-btn {
@@ -221,12 +227,16 @@
   }
   
   @media (max-width: 480px) {
+    .carousel-wrapper {
+      min-height: 280px;
+    }
+    
     .carousel-slide {
       padding: 0.25rem;
     }
     
     .carousel-slide img {
-      max-height: 300px;
+      max-height: 280px;
     }
   }
 
