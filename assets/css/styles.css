@@ -1191,29 +1191,34 @@ video {
     position: relative;
     width: 100%;
     overflow: hidden;
-    min-height: 400px;
+    height: 500px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 1rem;
   }
 .carousel-track {
     display: flex;
+    height: 100%;
     transition: transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
   }
 .carousel-slide {
     min-width: 100%;
+    height: 100%;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
+    padding: 1.5rem;
   }
 .carousel-slide img {
     max-width: 100%;
-    max-height: 600px;
+    max-height: 100%;
     width: auto;
     height: auto;
     display: block;
-    border-radius: 1rem;
+    border-radius: 0.75rem;
     -o-object-fit: contain;
        object-fit: contain;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   }
 .carousel-btn {
     cursor: pointer;
@@ -1225,17 +1230,18 @@ video {
 .carousel-btn:active {
     transform: translateY(-50%) scale(0.95);
   }
+@media (max-width: 1024px) {
+    .carousel-wrapper {
+      height: 450px;
+    }
+  }
 @media (max-width: 768px) {
     .carousel-wrapper {
-      min-height: 350px;
+      height: 380px;
     }
     
     .carousel-slide {
-      padding: 0.5rem;
-    }
-    
-    .carousel-slide img {
-      max-height: 350px;
+      padding: 1rem;
     }
     
     .carousel-btn {
@@ -1249,15 +1255,11 @@ video {
   }
 @media (max-width: 480px) {
     .carousel-wrapper {
-      min-height: 280px;
+      height: 320px;
     }
     
     .carousel-slide {
-      padding: 0.25rem;
-    }
-    
-    .carousel-slide img {
-      max-height: 280px;
+      padding: 0.75rem;
     }
   }
 /* Carousel dots */
