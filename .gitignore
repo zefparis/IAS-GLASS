@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Build outputs (keep compiled CSS in repo for deployment)
+# Uncomment if you want to exclude compiled CSS:
+# assets/css/styles.css
+
+# Vercel
+.vercel
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment
+.env
+.env.local
+.env.production

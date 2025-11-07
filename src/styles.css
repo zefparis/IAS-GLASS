@@ -1,0 +1,244 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: #F5F7FA;
+    --fg: #1B2229;
+    --muted: #6B7280;
+    --accent: #10B981;
+  }
+
+  .dark {
+    --bg: #0B0F14;
+    --fg: #E6EDF3;
+    --muted: #93A2B1;
+    --accent: #6EE7BF;
+  }
+
+  * {
+    border-color: rgba(147, 162, 177, 0.2);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    @apply bg-[var(--bg)] text-[var(--fg)] antialiased;
+    font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Inter, 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+
+  /* Skip link */
+  .skip-link {
+    @apply absolute -top-full left-0 bg-[var(--accent)] text-black px-4 py-2 z-50 focus:top-0;
+    transition: top 0.2s;
+  }
+
+  /* Focus visible */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-[var(--accent)] rounded-sm;
+  }
+}
+
+@layer components {
+  /* Button styles */
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-all duration-250 ease-smooth focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply bg-[var(--accent)] text-black hover:opacity-90 focus-visible:outline-[var(--accent)];
+  }
+
+  .btn-secondary {
+    @apply border-2 border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-black focus-visible:outline-[var(--accent)];
+  }
+
+  /* Card styles */
+  .card {
+    @apply bg-[var(--bg)] border rounded-xl p-6 transition-all duration-250 ease-smooth;
+    border-color: rgba(147, 162, 177, 0.2);
+  }
+
+  .card:hover {
+    @apply shadow-lg;
+    border-color: rgba(110, 231, 191, 0.4);
+    box-shadow: 0 10px 15px -3px rgba(110, 231, 191, 0.05), 0 4px 6px -2px rgba(110, 231, 191, 0.05);
+  }
+
+  /* Section container */
+  .section {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-smooth forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-smooth forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Glass effect for header */
+  .glass {
+    background: rgba(11, 15, 20, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .dark .glass {
+    background: rgba(11, 15, 20, 0.85);
+  }
+
+  :root:not(.dark) .glass {
+    background: rgba(245, 247, 250, 0.85);
+  }
+
+  /* Gallery Carousel Styles */
+  .gallery-carousel {
+    position: relative;
+  }
+
+  .carousel-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .carousel-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+  }
+
+  .carousel-slide {
+    min-width: 100%;
+    flex-shrink: 0;
+  }
+
+  .carousel-slide img {
+    width: 100%;
+    max-width: 900px;
+    max-height: 600px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 1rem;
+    object-fit: contain;
+  }
+
+  .carousel-btn {
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .carousel-btn:hover {
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .carousel-btn:active {
+    transform: translateY(-50%) scale(0.95);
+  }
+
+  @media (max-width: 768px) {
+    .carousel-btn {
+      padding: 0.5rem;
+    }
+    
+    .carousel-btn svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
+
+  /* Carousel dots */
+  .carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(147, 162, 177, 0.4);
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .carousel-dot:hover {
+    background: rgba(110, 231, 191, 0.6);
+    transform: scale(1.2);
+  }
+
+  .carousel-dot.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    width: 32px;
+    border-radius: 6px;
+  }
+
+  /* Touch gestures support */
+  .carousel-wrapper {
+    touch-action: pan-y pinch-zoom;
+  }
+
+  /* Disable transition during drag */
+  .carousel-track.dragging {
+    transition: none;
+  }
+}

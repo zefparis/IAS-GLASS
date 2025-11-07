@@ -1,0 +1,8 @@
+# robots.txt for IAS Glass Landing Page
+# Allow all crawlers
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://ias-glass.com/sitemap.xml

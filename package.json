@@ -1,0 +1,16 @@
+{
+  "name": "ias-glass-landing",
+  "version": "1.0.0",
+  "description": "Landing page statique pour IAS Glass - lunettes IA autonomes",
+  "scripts": {
+    "build:css": "postcss src/styles.css -o assets/css/styles.css",
+    "watch:css": "postcss src/styles.css -o assets/css/styles.css --watch",
+    "build": "npm run build:css"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "postcss-cli": "^11.0.0",
+    "tailwindcss": "^3.3.6"
+  }
+}
