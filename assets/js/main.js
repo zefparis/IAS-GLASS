@@ -61,6 +61,77 @@
   };
 
   /**
+   * Mobile Menu Module
+   */
+  const MobileMenu = {
+    init() {
+      const menuToggle = document.getElementById('mobile-menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+      const menuIconOpen = document.querySelector('.menu-icon-open');
+      const menuIconClose = document.querySelector('.menu-icon-close');
+      
+      if (!menuToggle || !mobileMenu) return;
+
+      // Toggle menu
+      menuToggle.addEventListener('click', () => {
+        const isOpen = !mobileMenu.hidden;
+        
+        if (isOpen) {
+          this.closeMenu(mobileMenu, menuIconOpen, menuIconClose, menuToggle);
+        } else {
+          this.openMenu(mobileMenu, menuIconOpen, menuIconClose, menuToggle);
+        }
+      });
+
+      // Close menu when clicking on a link
+      mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          this.closeMenu(mobileMenu, menuIconOpen, menuIconClose, menuToggle);
+        });
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!mobileMenu.hidden && 
+            !mobileMenu.contains(e.target) && 
+            !menuToggle.contains(e.target)) {
+          this.closeMenu(mobileMenu, menuIconOpen, menuIconClose, menuToggle);
+        }
+      });
+
+      // Close menu on escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !mobileMenu.hidden) {
+          this.closeMenu(mobileMenu, menuIconOpen, menuIconClose, menuToggle);
+        }
+      });
+    },
+
+    openMenu(menu, iconOpen, iconClose, toggle) {
+      menu.hidden = false;
+      setTimeout(() => {
+        menu.style.transform = 'translateY(0)';
+      }, 10);
+      iconOpen.classList.add('hidden');
+      iconClose.classList.remove('hidden');
+      toggle.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden'; // Prevent scroll
+    },
+
+    closeMenu(menu, iconOpen, iconClose, toggle) {
+      menu.style.transform = 'translateY(-100%)';
+      setTimeout(() => {
+        menu.hidden = true;
+      }, 300);
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = ''; // Restore scroll
+    }
+  };
+
+  /**
    * Smooth Scroll Module
    */
   const SmoothScroll = {
@@ -460,6 +531,7 @@
 
   function initModules() {
     ThemeToggle.init();
+    MobileMenu.init();
     SmoothScroll.init();
     ScrollSpy.init();
     FAQAccordion.init();
