@@ -3,6 +3,8 @@
  * French and English translations for the entire site
  */
 
+console.log('🌍 translations.js loaded');
+
 const translations = {
   fr: {
     // Meta & SEO
@@ -283,3 +285,4 @@ const translations = {
 
 // Make translations available globally
 window.translations = translations;
+console.log('✅ window.translations set:', Object.keys(window.translations));
