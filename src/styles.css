@@ -269,4 +269,23 @@
   .carousel-track.dragging {
     transition: none;
   }
+
+  /* Language toggle button */
+  #lang-toggle {
+    position: relative;
+  }
+
+  #lang-toggle .lang-text {
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+
+  #lang-toggle:hover .lang-text {
+    transform: scale(1.1);
+  }
+
+  /* Transition for i18n elements */
+  [data-i18n] {
+    transition: opacity 0.3s ease;
+  }
 }

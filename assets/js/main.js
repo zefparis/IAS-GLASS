@@ -61,6 +61,166 @@
   };
 
   /**
+   * I18n (Internationalization) Module
+   */
+  const I18n = {
+    currentLang: 'fr',
+    translations: window.translations || {},
+
+    init() {
+      this.toggle = document.getElementById('lang-toggle');
+      
+      if (!this.toggle) {
+        console.warn('I18n: Language toggle button not found');
+        return;
+      }
+
+      // Check if translations are loaded
+      if (!this.translations || Object.keys(this.translations).length === 0) {
+        console.error('I18n: Translations not loaded. Make sure translations.js is loaded before main.js');
+        return;
+      }
+
+      console.log('I18n: Module initialized with languages:', Object.keys(this.translations));
+
+      // Load saved language or default to French
+      const savedLang = localStorage.getItem('lang') || 'fr';
+      this.setLanguage(savedLang, false);
+
+      // Event listener
+      this.toggle.addEventListener('click', () => this.handleToggle());
+    },
+
+    setLanguage(lang, animate = true) {
+      if (!this.translations[lang]) {
+        console.warn(`I18n: Language ${lang} not found`);
+        return;
+      }
+
+      console.log(`I18n: Switching to ${lang}`);
+      
+      this.currentLang = lang;
+      localStorage.setItem('lang', lang);
+
+      // Update HTML lang attribute
+      document.documentElement.setAttribute('lang', lang);
+
+      // Update all elements with data-i18n attribute
+      this.updateContent(animate);
+
+      // Update button text
+      if (this.toggle) {
+        const langText = this.toggle.querySelector('.lang-text');
+        if (langText) {
+          langText.textContent = lang === 'fr' ? 'EN' : 'FR';
+        }
+        this.toggle.setAttribute('aria-label', lang === 'fr' ? 'Switch to English' : 'Passer en français');
+      }
+
+      // Update meta tags
+      this.updateMetaTags();
+      
+      console.log(`I18n: Language switched to ${lang}`);
+    },
+
+    updateContent(animate = true) {
+      const elements = document.querySelectorAll('[data-i18n]');
+      let translated = 0;
+      
+      console.log(`I18n: Found ${elements.length} elements to translate`);
+      
+      elements.forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        const translation = this.translations[this.currentLang][key];
+        
+        if (translation) {
+          translated++;
+          // Add fade animation if enabled
+          if (animate && !prefersReducedMotion) {
+            element.style.opacity = '0';
+            setTimeout(() => {
+              this.setElementContent(element, translation);
+              element.style.opacity = '1';
+            }, 150);
+          } else {
+            this.setElementContent(element, translation);
+          }
+        } else {
+          console.warn(`I18n: Missing translation for key: ${key}`);
+        }
+      });
+
+      console.log(`I18n: Translated ${translated}/${elements.length} elements`);
+
+      // Update form success message
+      this.updateFormMessage();
+    },
+
+    setElementContent(element, translation) {
+      const attr = element.getAttribute('data-i18n-attr');
+      
+      if (attr) {
+        // Update attribute (e.g., placeholder, aria-label, alt)
+        element.setAttribute(attr, translation);
+      } else {
+        // Update text content
+        element.textContent = translation;
+      }
+    },
+
+    updateMetaTags() {
+      // Update title
+      const titleKey = 'meta.title';
+      const title = this.translations[this.currentLang][titleKey];
+      if (title) {
+        document.title = title;
+      }
+
+      // Update meta description
+      const descKey = 'meta.description';
+      const desc = this.translations[this.currentLang][descKey];
+      if (desc) {
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) {
+          metaDesc.setAttribute('content', desc);
+        }
+      }
+
+      // Update OG tags
+      const ogTitle = this.translations[this.currentLang]['meta.og.title'];
+      if (ogTitle) {
+        const ogTitleMeta = document.querySelector('meta[property="og:title"]');
+        if (ogTitleMeta) {
+          ogTitleMeta.setAttribute('content', ogTitle);
+        }
+      }
+
+      const ogDesc = this.translations[this.currentLang]['meta.og.description'];
+      if (ogDesc) {
+        const ogDescMeta = document.querySelector('meta[property="og:description"]');
+        if (ogDescMeta) {
+          ogDescMeta.setAttribute('content', ogDesc);
+        }
+      }
+    },
+
+    updateFormMessage() {
+      // Update the form success message
+      const successKey = 'contact.form.success';
+      window.formSuccessMessage = this.translations[this.currentLang][successKey];
+    },
+
+    handleToggle() {
+      const newLang = this.currentLang === 'fr' ? 'en' : 'fr';
+      this.setLanguage(newLang);
+    },
+
+    t(key) {
+      return this.translations[this.currentLang][key] || key;
+    }
+  };
+
+  /**
    * Mobile Menu Module
    */
   const MobileMenu = {
@@ -269,15 +429,16 @@
         // In production, this would connect to a backend
         const name = form.querySelector('#name').value;
         const email = form.querySelector('#email').value;
-        const message = form.querySelector('#message').value;
+        const userMessage = form.querySelector('#message').value;
         
-        const mailtoLink = `mailto:contact@ia-solution.fr?subject=Contact IAS Glass&body=Nom: ${encodeURIComponent(name)}%0D%0AEmail: ${encodeURIComponent(email)}%0D%0A%0D%0AMessage:%0D%0A${encodeURIComponent(message)}`;
+        const mailtoLink = `mailto:contact@ia-solution.fr?subject=Contact IAS Glass&body=Nom: ${encodeURIComponent(name)}%0D%0AEmail: ${encodeURIComponent(email)}%0D%0A%0D%0AMessage:%0D%0A${encodeURIComponent(userMessage)}`;
         
         window.location.href = mailtoLink;
         e.preventDefault();
         
         // Show confirmation (optional)
-        alert('Merci pour votre message ! Votre client email va s\'ouvrir.');
+        const successMessage = window.formSuccessMessage || 'Merci pour votre message ! Votre client email va s\'ouvrir.';
+        alert(successMessage);
       });
     }
   };
@@ -531,6 +692,7 @@
 
   function initModules() {
     ThemeToggle.init();
+    I18n.init();
     MobileMenu.init();
     SmoothScroll.init();
     ScrollSpy.init();
